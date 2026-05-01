@@ -24,13 +24,13 @@
   },
   
   "forwardPorts": [
-    5901,
+    5900,
     6080,
     8080
   ],
   
   "portsAttributes": {
-    "5901": {
+    "5900": {
       "label": "VNC Server",
       "onAutoForward": "notify"
     },
