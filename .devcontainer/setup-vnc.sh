@@ -51,7 +51,7 @@ echo "VNC password set" >> $LOG_FILE
 
 # Start x11vnc to share the X display
 echo "Starting x11vnc..." >> $LOG_FILE
-x11vnc -display :1 -forever -passwd test123 -rfbport 5901 -bg -noxdamage -thread >> $LOG_FILE 2>&1 &
+x11vnc -display :1 -forever -passwd test123 -rfbport 5901 -bg -noxdamage -rawfb 0x0@1024x768x32 >> $LOG_FILE 2>&1 &
 X11VNC_PID=$!
 sleep 3
 
