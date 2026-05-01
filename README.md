@@ -1,107 +1,104 @@
-# Excel Anomaly Detector
+# WebKitGTK + OpenDeck + ATK + Orca Test Environment
 
 > **⚠️ IMPORTANT NOTICE**: This is an **alpha proof of concept** and is **NOT production ready**. This framework has not been thoroughly tested and should only be used for experimental and development purposes. Use at your own risk.
 
-A comprehensive Excel macro for detecting and highlighting anomalies between two spreadsheets using multiple analytical methods.
+## Overview
 
-## Files Included
-
-- `ExcelAnomalyDetector.bas` - Complete VBA macro code
-- `ExcelAnomalyDetector_Guide.md` - Detailed user guide and documentation
-- `README.md` - This file (overview and quick start)
+This is a comprehensive accessibility testing environment for WebKitGTK, OpenDeck, ATK, and Orca integration. It provides a complete containerized setup with VNC access for testing web accessibility features.
 
 ## Quick Start
 
-1. **Install the Macro**
-   - Open Excel
-   - Press `Alt + F11` to open VBA Editor
-   - Insert > Module
-   - Copy/paste code from `ExcelAnomalyDetector.bas`
-   - Save as macro-enabled workbook (`.xlsm`)
+### 1. Launch GitHub Codespace
 
-2. **Run Analysis**
-   - Press `Alt + F8` to open macro dialog
-   - Select `DetectAnomalies` and click Run
-   - Follow the prompts to select anomaly type and parameters
+1. **Visit the Repository**: https://github.com/opensourcemechanic/opendeck-test
+2. **Click "Code"** → **"Codespaces"** → **"Create codespace on main"**
+3. **Wait 2-3 minutes** for the build to complete
 
-## Features
+### 2. Access the Environment
 
-### Four Anomaly Detection Methods:
+Once the Codespace is ready, you have several access options:
 
-1. **Individual Percentage Difference** 
-   - Highlights cells where change > specified percentage
-   - Perfect for finding significant value changes
+#### **Web Access (Recommended)**
+- **Port 6080**: Opens automatically in your browser
+- **No software installation required**
+- **Full VNC access in browser**
 
-2. **Group Percentage Difference**
-   - Groups nearby anomalies and analyzes combined impact
-   - Ideal for detecting regional or clustered patterns
+#### **VNC Client Access**
+- **Port 5900**: Connect with any VNC client
+- **Password**: `test123`
+- **Recommended clients**:
+  - Windows: RealVNC Viewer, TightVNC
+  - macOS: RealVNC Viewer, Screen Sharing
+  - Linux: Remmina, TigerVNC
 
-3. **Individual Standard Deviation**
-   - Statistical outlier detection using Z-scores
-   - Best for quality control and scientific data
+#### **Terminal Access**
+- **VS Code Terminal**: Full bash access
+- **Run commands directly**: `python3 test_app.py`
 
-4. **Group Standard Deviation**
-   - Combines grouping with statistical analysis
-   - Excellent for finding systematic issues
+## Test Environment Features
 
-### Key Benefits:
-- **Visual Highlighting**: Anomalous cells are color-coded
-- **Comprehensive Reports**: Detailed results sheets with statistics
-- **Flexible Parameters**: Customizable thresholds and grouping
-- **Multiple Data Types**: Works with Excel, CSV, and other formats
+### Accessibility Stack Components
 
-## Example Usage
+#### **WebKitGTK**
+- Web content rendering engine
+- ARIA support implementation
+- DOM accessibility tree generation
 
-### Financial Analysis
-```vba
-' Find revenue changes > 10%
-IndividualPercentageAnomalies()
-' Threshold: 10
+#### **OpenDeck**
+- Web-to-desktop accessibility bridge
+- ARIA role mapping to ATK
+- Dynamic content event handling
+
+#### **ATK (Accessibility Toolkit)**
+- Cross-platform accessibility framework
+- Screen reader integration
+- Assistive technology support
+
+#### **Orca Screen Reader**
+- Voice output for accessibility testing
+- Braille display support
+- Magnification features
+
+## Files Included
+
+- `test_app.py` - Main accessibility test application
+- `Dockerfile` - Container configuration (for local Docker use)
+- `.devcontainer/devcontainer.json` - GitHub Codespaces configuration
+- `README_CODESAPCES.md` - Detailed Codespaces setup guide
+- `health_check.sh` - Environment health verification
+
+## Running Tests
+
+### Basic Test
+```bash
+python3 test_app.py
 ```
 
-### Quality Control
-```vba
-' Find measurements > 3 standard deviations
-IndividualStdDevAnomalies()
-' Std Dev Multiplier: 3
+### Health Check
+```bash
+./health_check.sh
 ```
-
-### Pattern Detection
-```vba
-' Find clusters of changes in nearby cells
-GroupPercentageAnomalies()
-' Individual: 5%, Distance: 2, Group: 15%
-```
-
-## Color Coding
-- **Light Red**: Individual percentage anomalies
-- **Dark Red**: Grouped percentage anomalies  
-- **Light Blue**: Individual standard deviation anomalies
-- **Dark Blue**: Grouped standard deviation anomalies
 
 ## Documentation
 
-See `ExcelAnomalyDetector_Guide.md` for:
-- Detailed installation instructions
-- Complete parameter explanations
-- Best practices and tips
-- Troubleshooting guide
-- Advanced usage examples
+- **README_CODESAPCES.md** - Detailed Codespaces setup and troubleshooting
+- **README_DEPLOYMENT.md** - Local Docker deployment guide
+- **accessibility_test_environment.md** - Comprehensive technical documentation
 
 ## Requirements
 
-- Microsoft Excel 2007 or later
-- Macro security enabled
-- Basic understanding of Excel ranges
+- GitHub account (for Codespaces)
+- Modern web browser (for VNC web access)
+- Optional: VNC client for desktop access
 
 ## Support
 
 For issues or questions:
-1. Check the troubleshooting section in the guide
-2. Verify data formatting (numeric values only)
-3. Ensure both sheets have identical structure
-4. Test with small datasets first
+1. Check README_CODESAPCES.md for troubleshooting
+2. Verify ports 5900/6080 are accessible
+3. Run health_check.sh to diagnose issues
+4. Check GitHub Codespaces documentation
 
 ## License
 
-This code is provided as-is for educational and commercial use.
+This code is provided as-is for educational and experimental use.

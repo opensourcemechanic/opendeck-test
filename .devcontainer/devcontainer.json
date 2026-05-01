@@ -1,7 +1,5 @@
 {
   "name": "Accessibility Test Environment",
-  "dockerFile": "../Dockerfile",
-  "context": "..",
   
   "customizations": {
     "vscode": {
@@ -16,10 +14,13 @@
         "ms-python.python",
         "ms-python.flake8",
         "ms-python.autopep8",
-        "redhat.vscode-yaml",
-        "ms-vscode-remote.remote-containers"
+        "redhat.vscode-yaml"
       ]
     }
+  },
+  
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {}
   },
   
   "forwardPorts": [
@@ -38,19 +39,7 @@
     }
   },
   
-  "postCreateCommand": "echo 'Accessibility test environment ready! Connect via VNC on port 5900 (password: test123)'",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y webkit2gtk-4.0 libatk-bridge2.0-0 at-spi2-core orca python3-gi python3-dbus python3-pip dbus-x11 gsettings-desktop-schemas",
   
-  "postAttachCommand": "python3 /root/test_app.py",
-  
-  "remoteUser": "root",
-  
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-  },
-  
-  "runArgs": [
-    "--cap-add=SYS_ADMIN",
-    "--security-opt=seccomp:unconfined",
-    "--privileged"
-  ]
+  "postStartCommand": "pip3 install pyatspi2 dbus-python && echo 'Accessibility test environment ready!'"
 }
