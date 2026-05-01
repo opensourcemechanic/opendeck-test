@@ -1,5 +1,7 @@
 # WebKitGTK + OpenDeck + ATK + Orca Test Environment
 
+> **⚠️ IMPORTANT NOTICE**: This is an **alpha proof of concept** and is **NOT production ready**. This framework has not been thoroughly tested and should only be used for experimental and development purposes. Use at your own risk.
+
 ## Overview
 
 This is a comprehensive accessibility testing environment for WebKitGTK, OpenDeck, ATK, and Orca integration. It provides a complete containerized setup with VNC access for testing web accessibility features.

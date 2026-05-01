@@ -1,5 +1,7 @@
 # Excel Anomaly Detector
 
+> **⚠️ IMPORTANT NOTICE**: This is an **alpha proof of concept** and is **NOT production ready**. This framework has not been thoroughly tested and should only be used for experimental and development purposes. Use at your own risk.
+
 A comprehensive Excel macro for detecting and highlighting anomalies between two spreadsheets using multiple analytical methods.
 
 ## Files Included
