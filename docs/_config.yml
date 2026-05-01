@@ -1,0 +1,67 @@
+# Site settings
+title: "WebKitGTK + OpenDeck + ATK + Orca Test Environment"
+description: "Comprehensive accessibility testing environment for WebKitGTK, OpenDeck, ATK, and Orca integration"
+url: "https://opensourcemechanic.github.io"
+baseurl: "/opendeck_test"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Navigation
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Codespace Guide"
+    url: "/codespace-guide"
+  - title: "Technical Overview"
+    url: "/technical-overview"
+  - title: "API Reference"
+    url: "/api-reference"
+  - title: "Test Cases"
+    url: "/test-cases"
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Include specific files
+include:
+  - _pages
+
+# Sass configuration
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# SEO
+twitter:
+  username: opensourcemechanic
+  card: summary
+
+social:
+  name: Open Source Mechanic
+  links:
+    - https://github.com/opensourcemechanic
+
+# Google Analytics (if needed)
+google_analytics: # UA-XXXXXXXX-X
