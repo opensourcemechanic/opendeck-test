@@ -1,0 +1,34 @@
+image:
+  file: Dockerfile
+
+ports:
+  - port: 5900
+    onOpen: notify
+  - port: 6080
+    onOpen: open-browser
+
+tasks:
+  - name: Start Accessibility Test Environment
+    command: |
+      echo "Starting accessibility test environment..."
+      echo "VNC will be available on port 5900 (password: test123)"
+      echo "Web VNC will be available on port 6080"
+      python3 /root/test_app.py
+
+  - name: Health Check
+    command: |
+      echo "Running health check..."
+      /root/health_check.sh
+      echo "Health check completed"
+
+vscode:
+  extensions:
+    - ms-python.python
+    - ms-python.flake8
+    - ms-python.autopep8
+    - redhat.vscode-yaml
+
+github:
+  prebuilds:
+    addBadge: true
+    enablePRPrebuilds: true

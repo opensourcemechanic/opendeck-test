@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  accessibility-test:
+    build: .
+    container_name: accessibility-test-env
+    ports:
+      - "5900:5900"    # VNC
+      - "6080:6080"    # Web VNC (if using noVNC)
+    environment:
+      - DISPLAY=:99
+      - DBUS_SESSION_BUS_ADDRESS=unix:path:/tmp/runtime-root/bus
+      - XDG_RUNTIME_DIR=/tmp/runtime-root
+      - VNC_PASSWORD=test123
+    volumes:
+      - ./test_data:/app/test_data
+      - ./logs:/app/logs
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp:unconfined
+    privileged: true
+    restart: unless-stopped
+    healthcheck:
+      test: ["/root/health_check.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add noVNC for web-based VNC access
+  novnc:
+    image: fredrikwallenberg/no-vnc:latest
+    container_name: accessibility-novnc
+    ports:
+      - "6080:6080"
+    environment:
+      - DISPLAY=:99
+      - VNC_PASSWORD=test123
+    depends_on:
+      - accessibility-test
+    network_mode: "service:accessibility-test"
+    restart: unless-stopped
