@@ -27,7 +27,7 @@ echo "VNC password set" >> $LOG_FILE
 
 # Start tigervnc server directly
 echo "Starting tigervnc server..." >> $LOG_FILE
-tigervncserver :1 -geometry 1024x768 -depth 24 -localhost no >> $LOG_FILE 2>&1 &
+tigervncserver :1 -geometry 1024x768 -depth 24 -localhost no -rfbport 5901 >> $LOG_FILE 2>&1 &
 sleep 3
 
 # Check if vncserver started
