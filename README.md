@@ -76,12 +76,17 @@ python3 test_app.py
 
 ### Health Check
 ```bash
-./health_check.sh
+./health_check_codespaces.sh
+```
+
+### Simple Test (Codespaces Compatible)
+```bash
+python3 simple_test.py
 ```
 
 ## Documentation
 
-- **README_CODESAPCES.md** - Detailed Codespaces setup and troubleshooting
+- **README_CODESPACES.md** - Detailed Codespaces setup and troubleshooting
 - **README_DEPLOYMENT.md** - Local Docker deployment guide
 - **accessibility_test_environment.md** - Comprehensive technical documentation
 
