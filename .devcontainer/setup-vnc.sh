@@ -27,7 +27,7 @@ echo "VNC password set" >> $LOG_FILE
 
 # Start tigervnc server on display :99 (standard Codespaces VNC port)
 echo "Starting tigervnc server on display :99..." >> $LOG_FILE
-tigervncserver :99 -geometry 1024x768 -depth 24 >> $LOG_FILE 2>&1 &
+tigervncserver :99 -geometry 1024x768 -depth 24 -localhost no >> $LOG_FILE 2>&1 &
 sleep 3
 
 # Check if vncserver started
