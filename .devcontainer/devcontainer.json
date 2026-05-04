@@ -44,7 +44,7 @@
     }
   },
   
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y webkit2gtk-4.0 libatk-bridge2.0-0 at-spi2-core orca python3-gi python3-dbus python3-pip dbus-x11 gsettings-desktop-schemas xvfb x11vnc fluxbox tigervnc-standalone-server",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y webkit2gtk-4.0 libatk-bridge2.0-0 at-spi2-core orca python3-gi python3-dbus python3-pip dbus-x11 gsettings-desktop-schemas xvfb x11vnc fluxbox tigervnc-standalone-server && chmod 755 .devcontainer/setup-vnc.sh",
   
-  "postStartCommand": "pip3 install pyatspi2 dbus-python && chmod +x .devcontainer/setup-vnc.sh && .devcontainer/setup-vnc.sh && sleep 5 && echo 'VNC setup completed, checking status:' && ps aux | grep -E '(Xtigervnc|vnc)' | grep -v grep && echo 'Checking ports:' && netstat -tlnp | grep -E '(5901|6080)' || echo 'Ports not found'"
+  "postStartCommand": "pip3 install pyatspi2 dbus-python && chmod 755 .devcontainer/setup-vnc.sh && .devcontainer/setup-vnc.sh && sleep 5 && echo 'VNC setup completed, checking status:' && ps aux | grep -E '(Xtigervnc|vnc)' | grep -v grep && echo 'Checking ports:' && netstat -tlnp | grep -E '(5901|6080)' || echo 'Ports not found'"
 }
