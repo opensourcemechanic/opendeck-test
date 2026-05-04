@@ -8,8 +8,8 @@ LOG_FILE="/tmp/vnc-setup.log"
 echo "Setup started at $(date)" > $LOG_FILE
 
 # Kill any existing processes
-pkill -f "Xvfb\|x11vnc\|fluxbox\|Xtigervnc\|websockify" 2>/dev/null
-sleep 1
+pkill -f "Xvfb\|x11vnc\|fluxbox\|Xtigervnc\|websockify\|Xorg" 2>/dev/null
+sleep 2
 
 # Unset any existing display
 unset DISPLAY
@@ -18,6 +18,10 @@ echo "Unset existing DISPLAY" >> $LOG_FILE
 # Clean up any existing locks and sessions
 rm -f /tmp/.X1-lock /tmp/.X11-unix/X1 2>/dev/null
 tigervncserver -kill :1 2>/dev/null
+
+# Also kill any processes using display :1
+fuser -k /tmp/.X11-unix/X1 2>/dev/null || true
+sleep 1
 
 # Create VNC password directory
 mkdir -p ~/.vnc
