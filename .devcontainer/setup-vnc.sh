@@ -48,11 +48,15 @@ echo "Set DISPLAY to :1" >> $LOG_FILE
 echo "Starting fluxbox..." >> $LOG_FILE
 fluxbox >> $LOG_FILE 2>&1 &
 FLUXBOX_PID=$!
-sleep 2
+sleep 3
+
+# Wait for X server to be ready
+echo "Waiting for X server to be ready..." >> $LOG_FILE
+timeout 10 sh -c "until xdpyinfo -display :1 >/dev/null 2>&1; do sleep 1; done" || echo "X server may not be fully ready" >> $LOG_FILE
 
 # Start x11vnc for web access
 echo "Starting x11vnc for web access..." >> $LOG_FILE
-x11vnc -display :1 -forever -passwdfile ~/.vnc/passwd -rfbport 5901 -bg -noxdamage -wait 30 >> $LOG_FILE 2>&1 &
+x11vnc -display :1 -forever -passwdfile ~/.vnc/passwd -rfbport 5901 -bg -noxdamage -wait 30 -shared >> $LOG_FILE 2>&1 &
 X11VNC_PID=$!
 sleep 3
 
