@@ -3,10 +3,22 @@
 # WSL Accessibility Test Environment Setup
 echo "Setting up accessibility test environment in WSL..."
 
-# Check if running in WSL
-if ! grep -q Microsoft /proc/version; then
-    echo "This script is designed for WSL. Please run it in WSL."
-    exit 1
+# Check for --force flag to skip WSL detection
+if [ "$1" = "--force" ]; then
+    echo "Force mode: skipping WSL detection"
+else
+    # Check if running in WSL
+    if ! grep -q -i "microsoft\|wsl" /proc/version 2>/dev/null && ! [ -d /mnt/c ]; then
+        echo "This script is designed for WSL. Please run it in WSL."
+        echo "Current system: $(uname -a)"
+        echo "Debug info:"
+        echo "  /proc/version: $(cat /proc/version 2>/dev/null || echo 'not found')"
+        echo "  /mnt/c exists: $([ -d /mnt/c ] && echo 'yes' || echo 'no')"
+        echo ""
+        echo "If you're sure you're in WSL, run with --force flag:"
+        echo "  ./setup-wsl.sh --force"
+        exit 1
+    fi
 fi
 
 # Update package list
